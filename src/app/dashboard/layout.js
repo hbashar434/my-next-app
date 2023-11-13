@@ -1,3 +1,5 @@
+import Sidebar from "./Sidebar";
+
 export const metadata = {
   title: "Dashboard | Next App",
   description: "next app",
@@ -5,8 +7,8 @@ export const metadata = {
 
 const DashboardLayout = ({ children }) => {
   return (
-    <div>
-      <div>Sidebar</div>
+    <div className="flex gap-3">
+      <Sidebar />
       {children}
     </div>
   );
