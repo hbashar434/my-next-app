@@ -1,3 +1,4 @@
+import NavLink from "@/components/NavLink";
 import Link from "next/link";
 
 const navLinks = [
@@ -51,13 +52,15 @@ const Sidebar = () => {
           </div>
 
           {navLinks.map((link, index) => (
-            <Link
+            <NavLink
               key={index}
               href={link.path}
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
+              activeClassName="font-bold text-indigo-500"
+              exact
             >
               <span className="mx-2 text-sm font-medium">{link.label}</span>
-            </Link>
+            </NavLink>
           ))}
         </nav>
       </div>
