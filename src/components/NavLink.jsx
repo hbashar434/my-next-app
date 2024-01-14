@@ -4,7 +4,13 @@ import ClassNames from "@/utils/ClassNames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const NavLink = ({ children, href, activeClassName, exact, ...props }) => {
+const NavLink = ({
+  children,
+  href,
+  activeClassName,
+  exact = false,
+  ...props
+}) => {
   const path = usePathname();
   const active = exact ? path === href : path.startsWith(href);
   const classes = ClassNames(props.className, active && activeClassName);

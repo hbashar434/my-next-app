@@ -1,4 +1,6 @@
+// "use client"; //for use router
 import Link from "next/link";
+// import { useRouter } from "next/navigation";
 
 const metadata = {
   title: "Blogs | Next App",
@@ -64,7 +66,12 @@ const blogs = [
   },
 ];
 
-const BlogsPage = () => {
+const BlogsPage = async () => {
+  // const router = useRouter(); //it will be use for button
+
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const data = await res.json();
+
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 p-12">
       {blogs.map((blog) => (
@@ -74,11 +81,14 @@ const BlogsPage = () => {
             pathname: `/blogs/${blog.year}/${blog.id}`,
             query: { title: blog.title },
           }}
+          // onClick={() =>
+          //   router.push(`/blogs/${blog.year}/${blog.id}?title=${blog.title}`)
+          // }
         >
           <div className="bg-gray-100 hover:bg-white shadow-md p-6 rounded-lg transition-transform transform hover:scale-105 h-48 ring-1">
-            <p className="text-gray-500">{blog.year}</p>
-            <h2 className="text-xl font-semibold mt-2">{blog.title}</h2>
-            <p className="text-gray-700 mt-2">{blog.description}</p>
+            <p className="text-gray-500">{blog?.year}</p>
+            <h2 className="text-xl font-semibold mt-2">{blog?.title}</h2>
+            <p className="text-gray-700 mt-2">{blog?.description}</p>
           </div>
         </Link>
       ))}
